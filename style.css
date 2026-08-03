@@ -341,3 +341,11 @@ width:100%;
     background:#dadada;
 
 }
+.no-button{
+
+    transition:
+        left .25s ease,
+        top .25s ease,
+        transform .25s ease;
+
+}
