@@ -273,6 +273,7 @@ function loadQuestion() {
     options.appendChild(input);
 
 }
+}
 
 function showSummary() {
 
