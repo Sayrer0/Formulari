@@ -368,14 +368,20 @@ const noBtn = document.getElementById("noBtn");
 const container = document.getElementById("container");
 const welcome = document.getElementById("welcome-screen");
 
+// ==============================
+// Pantalla inicial
+// ==============================
+
 const funnyTexts = [
     "No 😒",
     "Segur? 🤨",
     "Ni de conya 😂",
     "No encertes eh...",
     "Segueixes intentant-ho? 😏",
-    "On vas? Clica on toca dona",
-    "No et deixaré Culín",
+    "On vas? Clica on toca dona 😂",
+    "No et deixaré, Culín 😜",
+    "Quasi... però no 😏",
+    "Segueix provant 🤭",
     "No existeix aquesta opció 🤷",
     "Només pots dir que sí ❤️"
 ];
@@ -385,7 +391,6 @@ let tries = 0;
 yesBtn.addEventListener("click", () => {
 
     welcome.classList.add("hidden");
-
     container.classList.remove("hidden");
 
     loadQuestion();
@@ -394,17 +399,30 @@ yesBtn.addEventListener("click", () => {
 
 function moveNoButton() {
 
-    tries++;
+    // Mostrar el missatge corresponent
+    const index = Math.min(tries, funnyTexts.length - 1);
+    noBtn.innerHTML = funnyTexts[index];
 
-    if (tries < funnyTexts.length) {
-        noBtn.innerHTML = funnyTexts[tries];
+    // Missatges especials
+    if (tries === 10) {
+        alert("😂 Encara ho estàs intentant?");
     }
 
+    if (tries === 20) {
+        alert("Vaaaa... clica el 'Sí' ❤️");
+    }
+
+    if (tries === 30) {
+        alert("M'agrada la teva perseverança 😂");
+    }
+
+    tries++;
+
+    // Nova posició aleatòria
     const maxX = window.innerWidth - noBtn.offsetWidth - 20;
     const maxY = window.innerHeight - noBtn.offsetHeight - 20;
 
     noBtn.style.position = "fixed";
-
     noBtn.style.left = Math.random() * maxX + "px";
     noBtn.style.top = Math.random() * maxY + "px";
 
@@ -415,7 +433,6 @@ noBtn.addEventListener("mouseover", moveNoButton);
 noBtn.addEventListener("touchstart", (e) => {
 
     e.preventDefault();
-
     moveNoButton();
 
 });
