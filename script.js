@@ -362,7 +362,7 @@ function downloadCSV() {
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const container = document.getElementById("container");
-const welcome = document.getElementById("welcome");
+const welcome = document.getElementById("welcome-screen");
 
 yesBtn.onclick = () => {
 
