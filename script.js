@@ -7,6 +7,7 @@ const questions = [
             "Platja",
             "Cine",
             "Passejar",
+            "Gimnàs",
             "Bolera",
             "Videojocs",
             "Fira (?)"
