@@ -6,16 +6,15 @@ const questions = [
         type: "multi",
 
         options: [
-            "🌊 Platja",
-            "🎬 Cinema",
-            "🚶 Passejar",
-            "🏋️ Gimnàs",
-            "🎳 Bolera",
-            "🎮 Videojocs",
-            "🎡 Fira",
-            "🛍️ Compres",
-            "☕ Cafè",
-            "🏞️ Excursió"
+            "Platja",
+            "Cine",
+            "Passejar",
+            "Gimnàs",
+            "Bolera",
+            "Videojocs",
+            "Fira",
+            "Compres",
+            "Excursió"
         ]
     },
 
