@@ -48,6 +48,13 @@ const questions = [
             "Absurda"
         ]
     },
+    
+    {
+    question: "📅 Quin dia et va millor?",
+    type: "date",
+    key: "Data"
+    },
+    
     {
         question: "💬 Vols afegir algun comentari/queixa?",
         type: "text",
@@ -212,6 +219,7 @@ function loadQuestion() {
             };
 
             options.appendChild(div);
+            
 
         });
 
@@ -239,6 +247,30 @@ function loadQuestion() {
         options.appendChild(textarea);
 
     }
+
+    else if (q.type === "date") {
+
+    nextBtn.disabled = false;
+
+    const input = document.createElement("input");
+
+    input.type = "date";
+
+    input.className = "date-input";
+
+    const today = new Date().toISOString().split("T")[0];
+
+    input.min = today;
+
+    input.value = answers[q.key] || "";
+
+    input.onchange = () => {
+
+        answers[q.key] = input.value;
+
+    };
+
+    options.appendChild(input);
 
 }
 
