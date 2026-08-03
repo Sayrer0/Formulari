@@ -287,3 +287,57 @@ width:100%;
     margin-bottom:15px;
 
 }
+#welcome{
+
+    text-align:center;
+
+    padding:80px 30px;
+
+}
+
+.welcome-buttons{
+
+    position:relative;
+
+    height:220px;
+
+    margin-top:40px;
+
+}
+
+.main-btn,
+.no-btn{
+
+    padding:18px 45px;
+
+    border:none;
+
+    border-radius:15px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.main-btn{
+
+    background:#ff4f9d;
+
+    color:white;
+
+    margin-right:20px;
+
+}
+
+.no-btn{
+
+    position:absolute;
+
+    background:#dadada;
+
+}
