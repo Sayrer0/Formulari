@@ -77,7 +77,7 @@ const downloadBtn = document.getElementById("downloadBtn");
 const progressBar = document.getElementById("progress-bar");
 const stepCounter = document.getElementById("stepCounter");
 
-loadQuestion();
+// loadQuestion();
 
 backBtn.addEventListener("click", () => {
 
@@ -359,12 +359,27 @@ function downloadCSV() {
     document.body.removeChild(link);
 
 }
+// ==============================
+// Pantalla inicial
+// ==============================
+
 const yesBtn = document.getElementById("yesBtn");
 const noBtn = document.getElementById("noBtn");
 const container = document.getElementById("container");
 const welcome = document.getElementById("welcome-screen");
 
-yesBtn.onclick = () => {
+const funnyTexts = [
+    "No 😒",
+    "Segur? 🤨",
+    "Ni de conya 😂",
+    "Segueixes intentant-ho? 😏",
+    "No existeix aquesta opció 🤷",
+    "Només pots dir que sí ❤️"
+];
+
+let tries = 0;
+
+yesBtn.addEventListener("click", () => {
 
     welcome.classList.add("hidden");
 
@@ -372,27 +387,29 @@ yesBtn.onclick = () => {
 
     loadQuestion();
 
-};
+});
 
-function moveNoButton(){
+function moveNoButton() {
 
-    const area = document.querySelector(".welcome-buttons");
+    tries++;
 
-    const maxX = area.clientWidth - noBtn.offsetWidth;
-    const maxY = area.clientHeight - noBtn.offsetHeight;
+    if (tries < funnyTexts.length) {
+        noBtn.innerHTML = funnyTexts[tries];
+    }
 
-    const x = Math.random()*maxX;
-    const y = Math.random()*maxY;
+    const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+    const maxY = window.innerHeight - noBtn.offsetHeight - 20;
 
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+    noBtn.style.position = "fixed";
+
+    noBtn.style.left = Math.random() * maxX + "px";
+    noBtn.style.top = Math.random() * maxY + "px";
 
 }
 
-noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("mouseover", moveNoButton);
 
-// Per si intenta tocar-lo des del mòbil
-noBtn.addEventListener("touchstart", function(e){
+noBtn.addEventListener("touchstart", (e) => {
 
     e.preventDefault();
 
