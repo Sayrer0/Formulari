@@ -320,7 +320,9 @@ function showSummary() {
     summaryContent.innerHTML = "";
 
     questions.forEach(q => {
-
+        if (q.key === "Menjar" && answers["Lloc"] === "A casa") {
+        return;
+    }
         const card = document.createElement("div");
 
         card.className = "summary-card";
@@ -357,6 +359,9 @@ function downloadCSV() {
     csv += `"Data","${now.toLocaleString()}"\n`;
 
     questions.forEach(q => {
+        if (q.key === "Menjar" && answers["Lloc"] === "A casa") {
+        return;
+    }
 
         let value = answers[q.key];
 
