@@ -49,7 +49,7 @@ const questions = [
         ]
     },
     {
-        question: "💬 Vols afegir algun comentari?",
+        question: "💬 Vols afegir algun comentari/queixa?",
         type: "text",
         key: "Comentari"
     }
