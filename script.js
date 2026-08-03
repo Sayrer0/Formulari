@@ -1,0 +1,246 @@
+const questions = [
+    {
+        question: "☀️Pel matí i tarda, que et ve de gust?",
+        type: "options",
+        key: "Dia",
+        options: [
+            "Platja",
+            "Cine",
+            "Passejar",
+            "Fira (?)"
+        ]
+    },
+    {
+        question: "🍽️ Què et ve de gust sopar?",
+        type: "options",
+        key: "Menjar",
+        options: [
+            "Mersi Persi",
+            "Sushi",
+            "Hamburguesa Brontosauria",
+            "La Cosa Nostra",
+            "TastaPans"
+        ]
+    },
+    {
+        question: "📍 On t'agradaria anar?",
+        type: "options",
+        key: "Lloc",
+        options: [
+            "A casa",
+            "Restaurant"
+        ]
+    },
+    {
+        question: "❤️ Quin tipus de cita t'agradaria?",
+        type: "options",
+        key: "Tipus de cita",
+        options: [
+            "Romàntica",
+            "Tranquil·la",
+            "+18",
+            "Absurda"
+        ]
+    },
+    {
+        question: "💬 Vols afegir algun comentari?",
+        type: "text",
+        key: "Comentari"
+    }
+];
+
+let currentQuestion = 0;
+let answers = {};
+
+const question = document.getElementById("question");
+const options = document.getElementById("options");
+const summary = document.getElementById("summary");
+const summaryContent = document.getElementById("summary-content");
+
+const nextBtn = document.getElementById("nextBtn");
+const backBtn = document.getElementById("backBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+
+const progressBar = document.getElementById("progress-bar");
+const stepCounter = document.getElementById("stepCounter");
+
+loadQuestion();
+
+backBtn.addEventListener("click", () => {
+
+    if(currentQuestion>0){
+
+        currentQuestion--;
+
+        loadQuestion();
+
+    }
+
+});
+
+nextBtn.addEventListener("click", () => {
+
+    const q = questions[currentQuestion];
+
+    if(q.type==="options" && !answers[q.key])
+        return;
+
+    if(currentQuestion<questions.length-1){
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    }
+    else{
+
+        showSummary();
+
+    }
+
+});
+
+downloadBtn.addEventListener("click",downloadCSV);
+
+function loadQuestion(){
+
+    summary.classList.add("hidden");
+    document.getElementById("question-container").classList.remove("hidden");
+
+    nextBtn.classList.remove("hidden");
+    downloadBtn.classList.add("hidden");
+
+    const q=questions[currentQuestion];
+
+    stepCounter.innerHTML=`Pregunta ${currentQuestion+1} de ${questions.length}`;
+
+    question.innerHTML=q.question;
+
+    options.innerHTML="";
+
+    progressBar.style.width=((currentQuestion)/(questions.length))*100+"%";
+
+    backBtn.style.visibility=currentQuestion===0?"hidden":"visible";
+
+    if(q.type==="options"){
+
+        nextBtn.disabled=!answers[q.key];
+
+        q.options.forEach(option=>{
+
+            const div=document.createElement("div");
+
+            div.className="option";
+
+            div.innerHTML=option;
+
+            if(answers[q.key]===option){
+
+                div.classList.add("selected");
+
+            }
+
+            div.onclick=()=>{
+
+                document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));
+
+                div.classList.add("selected");
+
+                answers[q.key]=option;
+
+                nextBtn.disabled=false;
+
+            }
+
+            options.appendChild(div);
+
+        });
+
+    }
+
+    else{
+
+        nextBtn.disabled=false;
+
+        const textarea=document.createElement("textarea");
+
+        textarea.placeholder="Escriu aquí el que vulguis ❤️";
+
+        textarea.value=answers[q.key]||"";
+
+        textarea.oninput=()=>{
+
+            answers[q.key]=textarea.value;
+
+        }
+
+        options.appendChild(textarea);
+
+    }
+
+}
+
+function showSummary(){
+
+    progressBar.style.width="100%";
+
+    stepCounter.innerHTML="Resum";
+
+    document.getElementById("question-container").classList.add("hidden");
+
+    summary.classList.remove("hidden");
+
+    nextBtn.classList.add("hidden");
+
+    downloadBtn.classList.remove("hidden");
+
+    summaryContent.innerHTML="";
+
+    questions.forEach(q=>{
+
+        const card=document.createElement("div");
+
+        card.className="summary-card";
+
+        card.innerHTML=`
+        <div class="summary-title">${q.key}</div>
+        <div class="summary-value">${answers[q.key]||"-"}</div>
+        `;
+
+        summaryContent.appendChild(card);
+
+    });
+
+}
+
+function downloadCSV(){
+
+    const now=new Date();
+
+    let csv="Camp,Valor\n";
+
+    csv+=`"Data","${now.toLocaleString()}"\n`;
+
+    questions.forEach(q=>{
+
+        const value=(answers[q.key]||"").replace(/"/g,'""');
+
+        csv+=`"${q.key}","${value}"\n`;
+
+    });
+
+    const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});
+
+    const link=document.createElement("a");
+
+    link.href=URL.createObjectURL(blob);
+
+    link.download=`proposta_${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}.csv`;
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+}
