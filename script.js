@@ -375,7 +375,7 @@ const funnyTexts = [
     "No encertes eh...",
     "Segueixes intentant-ho? 😏",
     "On vas? Clica on toca dona",
-    "No et deixaré culín",
+    "No et deixaré Culín",
     "No existeix aquesta opció 🤷",
     "Només pots dir que sí ❤️"
 ];
