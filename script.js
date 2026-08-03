@@ -359,3 +359,43 @@ function downloadCSV() {
     document.body.removeChild(link);
 
 }
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const container = document.getElementById("container");
+const welcome = document.getElementById("welcome");
+
+yesBtn.onclick = () => {
+
+    welcome.classList.add("hidden");
+
+    container.classList.remove("hidden");
+
+    loadQuestion();
+
+};
+
+function moveNoButton(){
+
+    const area = document.querySelector(".welcome-buttons");
+
+    const maxX = area.clientWidth - noBtn.offsetWidth;
+    const maxY = area.clientHeight - noBtn.offsetHeight;
+
+    const x = Math.random()*maxX;
+    const y = Math.random()*maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+}
+
+noBtn.addEventListener("mouseenter", moveNoButton);
+
+// Per si intenta tocar-lo des del mòbil
+noBtn.addEventListener("touchstart", function(e){
+
+    e.preventDefault();
+
+    moveNoButton();
+
+});
