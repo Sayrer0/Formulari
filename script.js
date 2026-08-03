@@ -120,7 +120,7 @@ nextBtn.addEventListener("click", () => {
 
         showSummary();
 
-    }*/
+    */}
     if (currentQuestion < questions.length - 1) {
 
     currentQuestion++;
