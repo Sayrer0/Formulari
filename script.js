@@ -88,17 +88,22 @@ nextBtn.addEventListener("click", () => {
 
     const q = questions[currentQuestion];
 
-    if(q.type==="options" && !answers[q.key])
+    // Validació per preguntes single
+    if (q.type === "single" && !answers[q.key]) {
         return;
+    }
 
-    if(currentQuestion<questions.length-1){
+    // Validació per preguntes multi
+    if (q.type === "multi" && (!answers[q.key] || answers[q.key].length === 0)) {
+        return;
+    }
+
+    if (currentQuestion < questions.length - 1) {
 
         currentQuestion++;
-
         loadQuestion();
 
-    }
-    else{
+    } else {
 
         showSummary();
 
