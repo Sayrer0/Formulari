@@ -14,6 +14,15 @@ const questions = [
         ]
     },
     {
+        question: "📍 On t'agradaria anar per sopar?",
+        type: "single",
+        key: "Lloc",
+        options: [
+            "A casa",
+            "Restaurant"
+        ]
+    },
+    {
         question: "🍽️ Què et ve de gust sopar?",
         type: "single",
         key: "Menjar",
@@ -25,15 +34,6 @@ const questions = [
             "La Cosa Nostra",
             "TastaPans",
             "Descobrim un lloc nou"
-        ]
-    },
-    {
-        question: "📍 On t'agradaria anar per sopar?",
-        type: "single",
-        key: "Lloc",
-        options: [
-            "A casa",
-            "Restaurant"
         ]
     },
     {
