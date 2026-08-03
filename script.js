@@ -107,7 +107,7 @@ nextBtn.addEventListener("click", () => {
 
 downloadBtn.addEventListener("click",downloadCSV);
 
-function loadQuestion(){
+function loadQuestion() {
 
     summary.classList.add("hidden");
     document.getElementById("question-container").classList.remove("hidden");
@@ -115,47 +115,48 @@ function loadQuestion(){
     nextBtn.classList.remove("hidden");
     downloadBtn.classList.add("hidden");
 
-    const q=questions[currentQuestion];
+    const q = questions[currentQuestion];
 
-    stepCounter.innerHTML=`Pregunta ${currentQuestion+1} de ${questions.length}`;
+    stepCounter.innerHTML = `Pregunta ${currentQuestion + 1} de ${questions.length}`;
 
-    question.innerHTML=q.question;
+    question.innerHTML = q.question;
 
-    options.innerHTML="";
+    options.innerHTML = "";
 
-    progressBar.style.width=((currentQuestion)/(questions.length))*100+"%";
+    progressBar.style.width = ((currentQuestion) / (questions.length)) * 100 + "%";
 
-    backBtn.style.visibility=currentQuestion===0?"hidden":"visible";
+    backBtn.style.visibility = currentQuestion === 0 ? "hidden" : "visible";
 
-    if(q.type==="options"){
+    // ============================
+    // PREGUNTA D'UNA OPCIÓ
+    // ============================
+    if (q.type === "single") {
 
-        nextBtn.disabled=!answers[q.key];
+        nextBtn.disabled = !answers[q.key];
 
-        q.options.forEach(option=>{
+        q.options.forEach(option => {
 
-            const div=document.createElement("div");
+            const div = document.createElement("div");
 
-            div.className="option";
+            div.className = "option";
 
-            div.innerHTML=option;
+            div.innerHTML = option;
 
-            if(answers[q.key]===option){
+            if (answers[q.key] === option) {
+                div.classList.add("selected");
+            }
+
+            div.onclick = () => {
+
+                document.querySelectorAll(".option").forEach(o => o.classList.remove("selected"));
 
                 div.classList.add("selected");
 
-            }
+                answers[q.key] = option;
 
-            div.onclick=()=>{
+                nextBtn.disabled = false;
 
-                document.querySelectorAll(".option").forEach(o=>o.classList.remove("selected"));
-
-                div.classList.add("selected");
-
-                answers[q.key]=option;
-
-                nextBtn.disabled=false;
-
-            }
+            };
 
             options.appendChild(div);
 
@@ -163,21 +164,71 @@ function loadQuestion(){
 
     }
 
-    else{
+    // ============================
+    // PREGUNTA MULTI
+    // ============================
+    else if (q.type === "multi") {
 
-        nextBtn.disabled=false;
+        if (!answers[q.key])
+            answers[q.key] = [];
 
-        const textarea=document.createElement("textarea");
+        nextBtn.disabled = answers[q.key].length === 0;
 
-        textarea.placeholder="Escriu aquí el que vulguis ❤️";
+        q.options.forEach(option => {
 
-        textarea.value=answers[q.key]||"";
+            const div = document.createElement("div");
 
-        textarea.oninput=()=>{
+            div.className = "option";
 
-            answers[q.key]=textarea.value;
+            div.innerHTML = option;
 
-        }
+            if (answers[q.key].includes(option))
+                div.classList.add("selected");
+
+            div.onclick = () => {
+
+                if (answers[q.key].includes(option)) {
+
+                    answers[q.key] = answers[q.key].filter(o => o !== option);
+
+                    div.classList.remove("selected");
+
+                } else {
+
+                    answers[q.key].push(option);
+
+                    div.classList.add("selected");
+
+                }
+
+                nextBtn.disabled = answers[q.key].length === 0;
+
+            };
+
+            options.appendChild(div);
+
+        });
+
+    }
+
+    // ============================
+    // TEXT
+    // ============================
+    else if (q.type === "text") {
+
+        nextBtn.disabled = false;
+
+        const textarea = document.createElement("textarea");
+
+        textarea.placeholder = "Escriu aquí el que vulguis ❤️";
+
+        textarea.value = answers[q.key] || "";
+
+        textarea.oninput = () => {
+
+            answers[q.key] = textarea.value;
+
+        };
 
         options.appendChild(textarea);
 
