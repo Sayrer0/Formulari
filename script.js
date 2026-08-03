@@ -94,7 +94,7 @@ if (currentQuestion > 0) {
     }
 
     loadQuestion();
-}
+
 });
 
 nextBtn.addEventListener("click", () => {
