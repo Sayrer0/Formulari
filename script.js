@@ -79,15 +79,23 @@ const stepCounter = document.getElementById("stepCounter");
 
 // loadQuestion();
 
-backBtn.addEventListener("click", () => {
+if (currentQuestion > 0) {
 
-    if(currentQuestion>0){
+    currentQuestion--;
 
+    // Si venim enrere i la pregunta del restaurant estava amagada,
+    // també la saltem.
+    while (
+        currentQuestion > 0 &&
+        questions[currentQuestion].key === "Menjar" &&
+        answers["Lloc"] === "A casa"
+    ) {
         currentQuestion--;
-
-        loadQuestion();
-
     }
+
+    loadQuestion();
+
+}
 
 });
 
@@ -105,7 +113,7 @@ nextBtn.addEventListener("click", () => {
         return;
     }
 
-    if (currentQuestion < questions.length - 1) {
+    /*if (currentQuestion < questions.length - 1) {
 
         currentQuestion++;
         loadQuestion();
@@ -114,7 +122,27 @@ nextBtn.addEventListener("click", () => {
 
         showSummary();
 
+    }*/
+    if (currentQuestion < questions.length - 1) {
+
+    currentQuestion++;
+
+    // Si ha triat "A casa", ens saltem la pregunta del restaurant
+    while (
+        currentQuestion < questions.length &&
+        questions[currentQuestion].key === "Menjar" &&
+        answers["Lloc"] === "A casa"
+    ) {
+        currentQuestion++;
     }
+
+    loadQuestion();
+
+} else {
+
+    showSummary();
+
+}
 
 });
 
