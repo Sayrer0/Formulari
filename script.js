@@ -1,12 +1,14 @@
 const questions = [
     {
         question: "☀️Pel matí i tarda, que et ve de gust?",
-        type: "options",
+        type: "multi",
         key: "Dia",
         options: [
             "Platja",
             "Cine",
             "Passejar",
+            "Bolera",
+            "Videojocs",
             "Fira (?)"
         ]
     },
@@ -19,11 +21,12 @@ const questions = [
             "Sushi",
             "Hamburguesa Brontosauria",
             "La Cosa Nostra",
-            "TastaPans"
+            "TastaPans",
+            "Descobrim un lloc nou"
         ]
     },
     {
-        question: "📍 On t'agradaria anar?",
+        question: "📍 On t'agradaria anar per sopar?",
         type: "options",
         key: "Lloc",
         options: [
