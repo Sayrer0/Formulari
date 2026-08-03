@@ -1,351 +1,584 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+/* ==========================
+   GENERAL
+========================== */
+
+* {
+    box-sizing: border-box;
 }
 
-body{
-    font-family:'Poppins',sans-serif;
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fad0c4,#fbc2eb,#a18cd1);
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:30px;
-}
+body {
 
-.container{
-    width:100%;
-    max-width:700px;
-}
+    margin: 0;
 
-.card{
-    background:white;
-    border-radius:20px;
-    padding:40px;
-    box-shadow:0 15px 40px rgba(0,0,0,.15);
-    animation:fade .4s ease;
-}
+    min-height: 100vh;
 
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(10px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
+    display: flex;
 
-h1{
-    text-align:center;
-    margin-bottom:10px;
-    color:#444;
-}
+    justify-content: center;
 
-#subtitle{
-    text-align:center;
-    color:#777;
-    margin-bottom:30px;
-}
+    align-items: center;
 
-.progress{
-    width:100%;
-    height:10px;
-    background:#ececec;
-    border-radius:50px;
-    overflow:hidden;
-    margin-bottom:35px;
-}
+    font-family: 'Poppins', sans-serif;
 
-#progress-bar{
-    height:100%;
-    width:0%;
-    background:linear-gradient(to right,#ff5f9e,#ff8fb8);
-    transition:.35s;
-}
+    background:
+        linear-gradient(
+            135deg,
+            #ff9a9e,
+            #fad0c4,
+            #fad0c4,
+            #a18cd1
+        );
 
-#question{
-    text-align:center;
-    margin-bottom:25px;
-    color:#444;
-}
-
-#options{
-    display:grid;
-    gap:15px;
-}
-
-.option{
-
-    background:#fafafa;
-    border:2px solid #ddd;
-    border-radius:12px;
-    padding:16px;
-
-    text-align:center;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-    font-size:17px;
+    overflow-x: hidden;
 
 }
 
-.option:hover{
 
-    background:#ffe5ef;
-    border-color:#ff75a8;
 
-    transform:translateY(-2px);
+/* ==========================
+   ELEMENTS OCULTS
+========================== */
+
+.hidden {
+
+    display: none !important;
 
 }
 
-.option.selected{
 
-    background:#ff5f9e;
+
+/* ==========================
+   PANTALLA INICIAL
+========================== */
+
+#welcome-screen {
+
+    width: 100%;
+
+    height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+.welcome-card {
+
+    background: rgba(255,255,255,0.9);
+
+    width: 90%;
+
+    max-width: 450px;
+
+    padding: 40px;
+
+    border-radius: 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.15);
+
+    animation: appear .8s ease;
+
+}
+
+
+.welcome-card h1 {
+
+    font-size: 70px;
+
+    margin: 0;
+
+}
+
+
+.welcome-card h2 {
+
+    color: #e75480;
+
+    margin-top: 10px;
+
+}
+
+
+.welcome-card p {
+
+    color: #666;
+
+}
+
+
+
+/* ==========================
+   BOTONS INICIALS
+========================== */
+
+.welcome-buttons {
+
+    margin-top: 30px;
+
+    height: 100px;
+
+    position: relative;
+
+}
+
+
+button {
+
+    border: none;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    padding: 12px 25px;
+
+    border-radius: 30px;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+button:hover {
+
+    transform: scale(1.05);
+
+}
+
+
+
+.yes-button {
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #ff758c,
+        #ff7eb3
+    );
+
     color:white;
 
-    border-color:#ff5f9e;
+    box-shadow:
+        0 10px 20px rgba(255,117,140,.4);
 
 }
 
-textarea{
+
+
+.no-button {
+
+    background:#eee;
+
+    color:#555;
+
+    position:absolute;
+
+    margin-left:20px;
+
+}
+
+
+
+/* ==========================
+   CONTENIDOR FORMULARI
+========================== */
+
+#container {
 
     width:100%;
 
-    height:140px;
+    display:flex;
 
-    border-radius:12px;
+    justify-content:center;
 
-    border:2px solid #ddd;
+}
 
-    resize:none;
+
+
+.card {
+
+    width:90%;
+
+    max-width:600px;
+
+    background:white;
+
+    padding:35px;
+
+    border-radius:30px;
+
+    box-shadow:
+
+        0 20px 50px rgba(0,0,0,.15);
+
+    animation: slideUp .5s ease;
+
+}
+
+
+
+.card h1 {
+
+    text-align:center;
+
+    color:#e75480;
+
+}
+
+
+
+#subtitle {
+
+    text-align:center;
+
+    color:#777;
+
+}
+
+
+
+/* ==========================
+   PROGRESS BAR
+========================== */
+
+#stepCounter {
+
+    text-align:center;
+
+    margin-top:20px;
+
+    color:#888;
+
+}
+
+
+.progress {
+
+    width:100%;
+
+    height:10px;
+
+    background:#eee;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin:15px 0 30px;
+
+}
+
+
+#progress-bar {
+
+    height:100%;
+
+    width:0%;
+
+    background:
+
+    linear-gradient(
+        90deg,
+        #ff758c,
+        #ff7eb3
+    );
+
+    transition:.4s ease;
+
+}
+
+
+
+/* ==========================
+   PREGUNTES
+========================== */
+
+#question {
+
+    text-align:center;
+
+    color:#444;
+
+}
+
+
+
+#options {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+}
+
+
+
+.option {
 
     padding:15px;
 
+    border-radius:20px;
+
+    background:#fafafa;
+
+    border:2px solid transparent;
+
+    cursor:pointer;
+
+    transition:.25s ease;
+
+    text-align:center;
+
+}
+
+
+
+.option:hover {
+
+    transform:translateY(-3px);
+
+    background:#fff0f5;
+
+}
+
+
+
+.option.selected {
+
+    background:#ffe0eb;
+
+    border-color:#ff758c;
+
+}
+
+
+
+textarea {
+
+    width:100%;
+
+    min-height:120px;
+
+    border-radius:20px;
+
+    border:2px solid #eee;
+
+    padding:15px;
+
+    resize:none;
+
+    font-family:inherit;
+
+}
+
+
+
+/* ==========================
+   DATA
+========================== */
+
+.date-input {
+
+    width:100%;
+
+    padding:15px;
+
+    border-radius:20px;
+
+    border:2px solid #eee;
+
+    font-family:inherit;
+
     font-size:16px;
 
-    font-family:Poppins;
-
-    outline:none;
-
 }
 
-textarea:focus{
 
-    border-color:#ff5f9e;
 
-}
+/* ==========================
+   BOTONS FORMULARI
+========================== */
 
-.buttons{
-
-    margin-top:35px;
+.buttons {
 
     display:flex;
 
     justify-content:space-between;
 
-    gap:15px;
-
-}
-
-button{
-
-    flex:1;
-
-    border:none;
-
-    padding:15px;
-
-    border-radius:12px;
-
-    cursor:pointer;
-
-    font-size:16px;
-
-    font-weight:600;
-
-    transition:.25s;
-
-}
-
-#backBtn{
-
-    background:#ddd;
-
-}
-
-#backBtn:hover{
-
-    background:#cfcfcf;
-
-}
-
-#nextBtn{
-
-    background:#ff5f9e;
-
-    color:white;
-
-}
-
-#nextBtn:hover{
-
-    background:#ff3e88;
-
-}
-
-#downloadBtn{
-
-    background:#6c63ff;
-
-    color:white;
-
-}
-
-#downloadBtn:hover{
-
-    background:#5b50ff;
-
-}
-
-.hidden{
-
-    display:none;
-
-}
-
-#summary-content{
-
-    display:grid;
+    margin-top:30px;
 
     gap:15px;
 
 }
 
-.summary-card{
 
-    background:#fafafa;
 
-    border-left:5px solid #ff5f9e;
+#backBtn {
+
+    background:#eee;
+
+}
+
+
+
+#nextBtn,
+#downloadBtn {
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #ff758c,
+        #ff7eb3
+    );
+
+    color:white;
+
+}
+
+
+
+/* ==========================
+   RESUM
+========================== */
+
+.summary-card {
+
+    background:#fff5f8;
 
     padding:15px;
 
-    border-radius:10px;
+    border-radius:20px;
+
+    margin-bottom:12px;
 
 }
 
-.summary-title{
+
+
+.summary-title {
 
     font-weight:600;
 
-    color:#666;
-
-    margin-bottom:5px;
+    color:#e75480;
 
 }
 
-.summary-value{
 
-    color:#222;
+
+.summary-value {
+
+    margin-top:5px;
 
 }
+
+
+
+/* ==========================
+   ANIMACIONS
+========================== */
+
+@keyframes appear {
+
+    from {
+
+        opacity:0;
+
+        transform:scale(.8);
+
+    }
+
+    to {
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+
+@keyframes slideUp {
+
+    from {
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to {
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+
+
+/* ==========================
+   CONFETI
+========================== */
+
+#confetti {
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    pointer-events:none;
+
+}
+
+
+
+/* ==========================
+   MOBIL
+========================== */
 
 @media(max-width:600px){
 
-.card{
+    .card,
+    .welcome-card {
 
-padding:25px;
+        padding:25px;
 
-}
+    }
 
-.buttons{
 
-flex-direction:column;
+    .buttons {
 
-}
+        flex-direction:column;
 
-button{
+    }
 
-width:100%;
 
-}
+    button {
 
-}
+        width:100%;
 
-#stepCounter{
-
-    text-align:center;
-
-    font-weight:600;
-
-    color:#777;
-
-    margin-bottom:15px;
-
-}
-#welcome{
-
-    text-align:center;
-
-    padding:80px 30px;
-
-}
-
-.welcome-buttons{
-
-    position:relative;
-
-    height:220px;
-
-    margin-top:40px;
-
-}
-
-.main-btn,
-.no-btn{
-
-    padding:18px 45px;
-
-    border:none;
-
-    border-radius:15px;
-
-    font-size:20px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.25s;
-
-}
-
-.main-btn{
-
-    background:#ff4f9d;
-
-    color:white;
-
-    margin-right:20px;
-
-}
-
-.no-btn{
-
-    position:absolute;
-
-    background:#dadada;
-
-}
-.no-button{
-
-    transition:
-        left .25s ease,
-        top .25s ease,
-        transform .25s ease;
+    }
 
 }
