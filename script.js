@@ -117,14 +117,16 @@ const downloadBtn = document.getElementById("downloadBtn");
 
 const funnyTexts = [
 
-    "No 😒",
-    "Segur? 🤨",
+    "No",
+    "Segur?",
+    "Ops...",
     "Ni de conya 😂",
+    "Ànims!",
     "No encertes 😏",
     "Segueixes intentant-ho? 🤭",
-    "On vas? 😂",
+    "On vas?",
     "No et deixaré Culín ❤️",
-    "Segueix provant 😜",
+    "De grandes ilusiones vive el tonto de los cojones, no?",
     "No existeix aquesta opció 🤷",
     "Només pots dir que sí ❤️"
 
