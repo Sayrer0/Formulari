@@ -20,6 +20,7 @@ const questions = [
         options: [
             "Mersi Persi",
             "Sushi",
+            "Xino",
             "Hamburguesa Brontosauria",
             "La Cosa Nostra",
             "TastaPans",
@@ -37,7 +38,7 @@ const questions = [
     },
     {
         question: "❤️ Quin tipus de cita t'agradaria?",
-        type: "options",
+        type: "multi",
         key: "Tipus de cita",
         options: [
             "Romàntica",
