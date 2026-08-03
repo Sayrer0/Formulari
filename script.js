@@ -45,7 +45,7 @@ const questions = [
             "Mersi Persi",
             "La Cosa Nostra",
             "TastaPans",
-            "Sorprèn-me"
+            "Busquem un lloc nou entre els dos"
         ]
     },
 
