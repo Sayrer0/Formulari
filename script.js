@@ -57,7 +57,7 @@ const questions = [
         options: [
             "Romàntica",
             "Divertida",
-            "Amb amics"
+            "Amb amics",
             "Tranquil·la",
             "+18",
             "Absurda"
