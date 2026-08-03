@@ -6,6 +6,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>❤️ Organitzem una cita?</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!-- Pantalla inicial -->
+
+    <div id="welcome-screen">
+
+        <div class="welcome-card">
+
+            <h1>❤️</h1>
+
+            <h2>Vols tenir una cita amb mi?</h2>
+
+            <div class="welcome-buttons">
+
+                <button id="yesBtn" class="yes-button">
+                    Siiii
+                </button>
+
+                <button id="noBtn" class="no-button">
+                    No.
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Formulari -->
+
+    <div id="container" class="hidden">
+
+        <div class="card">
+
+            <h1>Organitzem una cita ❤️</h1>
+
+            <p id="subtitle">
+                Respon aquestes preguntes 😊
+            </p>
+
+            <div id="stepCounter"></div>
+
+            <div class="progress">
+
+                <div id="progress-bar"></div>
+
+            </div>
+
+            <div id="question-container">
+
+                <h2 id="question"></h2>
+
+                <div id="options"></div>
+
+            </div>
+
+
+
+            <!-- Resum -->
+
+            <div id="summary" class="hidden">
+
+                <h2>📋 Resum</h2>
+
+                <div id="summary-content"></div>
+
+            </div>
+
+
+
+            <!-- Botons -->
+
+            <div class="buttons">
+
+                <button id="backBtn">
+                    ⬅ Enrere
+                </button>
+
+                <button id="nextBtn">
+                    Següent ➜
+                </button>
+
+                <button id="downloadBtn" class="hidden">
+                    💌 Enviar proposta
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Confeti -->
+
+    <canvas id="confetti"></canvas>
+
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html><!DOCTYPE html>
+<html lang="ca">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>❤️ Organitzem una cita!</title>
 
     <link rel="stylesheet" href="style.css">
