@@ -15,7 +15,7 @@ const questions = [
     },
     {
         question: "🍽️ Què et ve de gust sopar?",
-        type: "options",
+        type: "single",
         key: "Menjar",
         options: [
             "Mersi Persi",
@@ -29,7 +29,7 @@ const questions = [
     },
     {
         question: "📍 On t'agradaria anar per sopar?",
-        type: "options",
+        type: "single",
         key: "Lloc",
         options: [
             "A casa",
@@ -43,6 +43,7 @@ const questions = [
         options: [
             "Romàntica",
             "Tranquil·la",
+            "Amb amics",
             "+18",
             "Absurda"
         ]
@@ -236,11 +237,11 @@ function loadQuestion() {
 
 }
 
-function showSummary(){
+function showSummary() {
 
-    progressBar.style.width="100%";
+    progressBar.style.width = "100%";
 
-    stepCounter.innerHTML="Resum";
+    stepCounter.innerHTML = "Resum";
 
     document.getElementById("question-container").classList.add("hidden");
 
@@ -250,17 +251,29 @@ function showSummary(){
 
     downloadBtn.classList.remove("hidden");
 
-    summaryContent.innerHTML="";
+    summaryContent.innerHTML = "";
 
-    questions.forEach(q=>{
+    questions.forEach(q => {
 
-        const card=document.createElement("div");
+        const card = document.createElement("div");
 
-        card.className="summary-card";
+        card.className = "summary-card";
 
-        card.innerHTML=`
-        <div class="summary-title">${q.key}</div>
-        <div class="summary-value">${answers[q.key]||"-"}</div>
+        let value = answers[q.key];
+
+        if (Array.isArray(value)) {
+
+            value = value.length > 0 ? value.join(", ") : "-";
+
+        } else {
+
+            value = value || "-";
+
+        }
+
+        card.innerHTML = `
+            <div class="summary-title">${q.key}</div>
+            <div class="summary-value">${value}</div>
         `;
 
         summaryContent.appendChild(card);
@@ -269,29 +282,37 @@ function showSummary(){
 
 }
 
-function downloadCSV(){
+function downloadCSV() {
 
-    const now=new Date();
+    const now = new Date();
 
-    let csv="Camp,Valor\n";
+    let csv = "Camp,Valor\n";
 
-    csv+=`"Data","${now.toLocaleString()}"\n`;
+    csv += `"Data","${now.toLocaleString()}"\n`;
 
-    questions.forEach(q=>{
+    questions.forEach(q => {
 
-        const value=(answers[q.key]||"").replace(/"/g,'""');
+        let value = answers[q.key];
 
-        csv+=`"${q.key}","${value}"\n`;
+        if (Array.isArray(value)) {
+
+            value = value.join(" | ");
+
+        }
+
+        value = (value || "").replace(/"/g, '""');
+
+        csv += `"${q.key}","${value}"\n`;
 
     });
 
-    const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
 
-    const link=document.createElement("a");
+    const link = document.createElement("a");
 
-    link.href=URL.createObjectURL(blob);
+    link.href = URL.createObjectURL(blob);
 
-    link.download=`proposta_${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,"0")}-${String(now.getDate()).padStart(2,"0")}.csv`;
+    link.download = `proposta_${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}.csv`;
 
     document.body.appendChild(link);
 
